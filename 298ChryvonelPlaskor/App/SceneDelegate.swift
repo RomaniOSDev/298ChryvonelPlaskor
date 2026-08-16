@@ -27,15 +27,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidDisconnect(_ scene: UIScene) {}
 
     func sceneDidBecomeActive(_ scene: UIScene) {
-        requestTrackingAuthorizationIfNeeded()
+        // ATT is requested from LoadingViewController when UI is visible and app is .active.
         routePendingPushURLIfNeeded(in: scene)
-    }
-
-    private func requestTrackingAuthorizationIfNeeded() {
-        guard ATTrackingManager.trackingAuthorizationStatus == .notDetermined else { return }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            ATTrackingManager.requestTrackingAuthorization { _ in }
-        }
     }
 
     func sceneWillResignActive(_ scene: UIScene) {}

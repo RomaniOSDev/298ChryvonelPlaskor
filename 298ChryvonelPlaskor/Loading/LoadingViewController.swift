@@ -9,6 +9,7 @@
 import Network
 import UIKit
 import SwiftUI
+import AppTrackingTransparency
 
 /// Максимальное ожидание conversion data перед fallback (учитывает organic-retry AppsFlyer ~5 с).
 private let conversionDataMaxWaitInterval: TimeInterval = 30
@@ -34,6 +35,8 @@ final class LoadingViewController: UIViewController {
     private var hasEnteredOnlineConfigFlow = false
     private var isAwaitingConversionData = false
     private var didRetryConfigAfterFailure = false
+    private var didHandleATTGate = false
+    private var becomeActiveObserver: NSObjectProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,11 +55,59 @@ final class LoadingViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        startConfigFlow()
+        requestTrackingAuthorizationThenContinue()
     }
 
     deinit {
         stopOfflineNetworkMonitoring()
+        if let becomeActiveObserver {
+            NotificationCenter.default.removeObserver(becomeActiveObserver)
+        }
+    }
+
+    /// ATT must run while UIApplication.state == .active (iOS 15+), otherwise the system alert is dropped.
+    private func requestTrackingAuthorizationThenContinue() {
+        guard !didHandleATTGate else { return }
+        didHandleATTGate = true
+
+        let continueStartup: () -> Void = { [weak self] in
+            AppDelegate.startAppsFlyerIfNeeded()
+            self?.startConfigFlow()
+        }
+
+        guard ATTrackingManager.trackingAuthorizationStatus == .notDetermined else {
+            continueStartup()
+            return
+        }
+
+        let presentATT = {
+            ATTrackingManager.requestTrackingAuthorization { _ in
+                DispatchQueue.main.async {
+                    continueStartup()
+                }
+            }
+        }
+
+        if UIApplication.shared.applicationState == .active {
+            presentATT()
+        } else {
+            becomeActiveObserver = NotificationCenter.default.addObserver(
+                forName: UIApplication.didBecomeActiveNotification,
+                object: nil,
+                queue: .main
+            ) { [weak self] _ in
+                guard let self else { return }
+                if let becomeActiveObserver = self.becomeActiveObserver {
+                    NotificationCenter.default.removeObserver(becomeActiveObserver)
+                    self.becomeActiveObserver = nil
+                }
+                guard ATTrackingManager.trackingAuthorizationStatus == .notDetermined else {
+                    continueStartup()
+                    return
+                }
+                presentATT()
+            }
+        }
     }
 
     private func startConfigFlow() {

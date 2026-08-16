@@ -19,9 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         AppsFlyerLib.shared().appleAppID = "6794160214"
         AppsFlyerLib.shared().delegate = self
         AppsFlyerLib.shared().deepLinkDelegate = self
-        AppsFlyerLib.shared().start()
+        // start() after ATT — see LoadingViewController.requestTrackingAuthorizationThenContinue()
 
-        // TODO: Add GoogleService-Info.plist to the app target before Firebase/push will work.
         if Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist") != nil {
             FirebaseApp.configure()
             Messaging.messaging().delegate = self
@@ -31,6 +30,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         } else {
             print("⚠️ GoogleService-Info.plist missing — Firebase not configured.")
         }
+    }
+
+    /// Called once ATT has been presented (or was already determined).
+    static func startAppsFlyerIfNeeded() {
+        AppsFlyerLib.shared().start()
     }
 
     private func configurePushNotifications(_ application: UIApplication) {
