@@ -60,6 +60,7 @@
 		C80210A1B2C3D4E5F6071829 /* NotificationServiceExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C80111A1B2C3D4E5F6071829 /* NotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C80211A1B2C3D4E5F6071829 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8010FA1B2C3D4E5F6071829 /* NotificationService.swift */; };
 		C80212A1B2C3D4E5F6071829 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = C80405A1B2C3D4E5F6071829 /* FirebaseMessaging */; };
+		C80214A1B2C3D4E5F6071829 /* LoadingThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80112A1B2C3D4E5F6071829 /* LoadingThemeColors.swift */; };
 		C81A01C7A6A6796B3D7C2220 /* SoundService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C345C1321F32E05E242F1536 /* SoundService.swift */; };
 		C976D2AD564A475FBF6818F9 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11567F591750B20DF3F3078 /* SettingsViewModel.swift */; };
 		CEF3DA90040CEEB70A271E2A /* TimelineSpineRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111A316CE01393C54D8ED260 /* TimelineSpineRow.swift */; };
@@ -70,7 +71,6 @@
 		F07C7614A6DC6A9E80E8794D /* AddEventSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D31C656F8EEAD82B054FB /* AddEventSheet.swift */; };
 		F14063193A152766ACA4C7CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD652BE84C76FCA2770D426 /* AppDelegate.swift */; };
 		F1C679345D1DA00C82328CAF /* BannerHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649058436CC6674BACEEC533 /* BannerHeader.swift */; };
-		C80214A1B2C3D4E5F6071829 /* LoadingThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80112A1B2C3D4E5F6071829 /* LoadingThemeColors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,6 +154,7 @@
 		C8010FA1B2C3D4E5F6071829 /* NotificationService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		C80110A1B2C3D4E5F6071829 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C80111A1B2C3D4E5F6071829 /* NotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C80112A1B2C3D4E5F6071829 /* LoadingThemeColors.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoadingThemeColors.swift; sourceTree = "<group>"; };
 		C9AFA0D31592C053BC757F45 /* EventDetailView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
 		CA03B6C74F0E6105942A512B /* 298ChryvonelPlaskor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 298ChryvonelPlaskor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4E5F60718293A4B5C6D7E8F /* EventFilterBar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventFilterBar.swift; sourceTree = "<group>"; };
@@ -166,7 +167,6 @@
 		F60718293A4B5C6D7E8F901A /* EventExtrasEditor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventExtrasEditor.swift; sourceTree = "<group>"; };
 		FB0073518552A8022EBABCFF /* EmptyStateView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		FFF813B8BEF7DCF94E86AC67 /* DataStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
-		C80112A1B2C3D4E5F6071829 /* LoadingThemeColors.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoadingThemeColors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -683,7 +683,7 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = 298ChryvonelPlaskor/298ChryvonelPlaskor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -829,7 +829,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotificationServiceExtension;
@@ -858,7 +858,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotificationServiceExtension;
@@ -892,7 +892,7 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = 298ChryvonelPlaskor/298ChryvonelPlaskor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
